@@ -64,39 +64,53 @@ if __name__ == '__main__':
             url = 'https://m.med126.com/' + href['href']
             # print(url)
             trd_urls.append(url)
-index_list = list(range(1, len(trd_urls) + 1))
-for tl in trd_urls:
-    med = get_data(tl)
-    med_page = BeautifulSoup(med.text,'lxml')
-    name = med_page.find("div", class_="timu").text
-    print(name)
-    tree = etree.HTML(med.text)
-    type = tree.xpath('//*[@id="dbu"]/div[4]/a[5]/text()')[0]
-    print(type)
-    table = med_page.find_all("table")[2]
-    tds = table.find_all("td")
-    feature = tds[11].text  # xingzhuang
-    yldl = tds[13].text  #yaoliduli
-    print(yldl)
-    yddlx = tds[15].text
-    syz = tds[17].text  # shiyingzheng
-    print(syz)
-    yfyl = tds[19].text
-    print(yfyl)
-    blfy = tds[21].text
-    print(blfy)
-    jjz = tds[23].text
-    print(jjz)
-    zysx = tds[25].text
-    print(zysx)
-    preg = tds[27].text
-    kid = tds[29].text
-    eld = tds[31].text
-    xhzy = tds[33].text
-    ywgl = tds[35].text
-    storage = tds[37].text
-    pack = tds[39].text
-    times = tds[41].text
+    index_list = list(range(1, len(trd_urls) + 1))
+    name = []
+    type = []
+    feature = [] # xingzhuang
+    yldl = []  #yaoliduli
+    yddlx = []
+    syz = []  # shiyingzheng
+    yfyl = []
+    blfy = []
+    jjz = []
+    zysx = []
+    preg = []
+    kid = []
+    eld = []
+    xhzy = []
+    ywgl = []
+    storage = []
+    pack = []
+    times = []
+
+    for tl in trd_urls:
+        med = get_data(tl)
+        med_page = BeautifulSoup(med.text,'lxml')
+        name.append(med_page.find("div", class_="timu").text)
+        print(name)
+        tree = etree.HTML(med.text)
+        type.append(tree.xpath('//*[@id="dbu"]/div[4]/a[5]/text()')[0])
+        table = med_page.find_all("table")[2]
+        tds = table.find_all("td")
+        feature.append(tds[11].text)  # xingzhuang
+        yldl.append(tds[13].text ) #yaoliduli
+        yddlx.append(tds[15].text)
+        print(yddlx)
+        syz.append(tds[17].text)  # shiyingzheng
+        yfyl.append(tds[19].text)
+        blfy.append(tds[21].text)
+        jjz.append(tds[23].text)
+        zysx.append(tds[25].text)
+        print(zysx)
+        preg.append(tds[27].text)
+        kid.append(tds[29].text)
+        eld.append(tds[31].text)
+        xhzy.append(tds[33].text)
+        ywgl.append(tds[35].text)
+        storage.append(tds[37].text)
+        pack.append(tds[39].text)
+        times.append(tds[41].text)
 
 
     data = {
